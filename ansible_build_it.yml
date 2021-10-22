@@ -40,10 +40,7 @@
         dest: /usr/local/bin/docker-compose
         mode: 755
     - name: Deploy Docker Compose stack
-      docker_compose:
-        project_src: ./
-        files:
-          - docker-compose.yml
+      ansible.builtin.shell: docker-compose up -d
 
 
         
