@@ -1,5 +1,5 @@
 - name: "Building simple CI stack"
-  hosts: all
+  hosts: localhost
   become: True
   gather_facts: False
   
