@@ -1,0 +1,45 @@
+- name: "Building simple CI stack"
+  hosts: all
+  become: True
+  gather_facts: False
+  
+  vars:
+    packages:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+    dockerpack:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+
+  tasks:
+    - name: Install packages and dependencies
+      apt:
+        name: "{{ packages }}"
+        state: latest
+        update_cache: yes
+    - name: Set up the repository
+      ansible.builtin.apt_key:
+        url: https://download.docker.com/linux/debian/gpg
+        state: present
+    - name: Add docker repository to sources
+      ansible.builtin.apt_repository:
+        repo: deb https://download.docker.com/linux/debian bullseye stable
+        state: present
+    - name: Install Docker Engine
+      apt:
+        name: "{{ dockerpack }}"
+        state: latest
+        update_cache: yes
+
+
+
+
+        
+
+
+
+
