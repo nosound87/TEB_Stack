@@ -1,2 +1,2 @@
 # TEB_Stack
-just a project for someone
+just old project for one company
